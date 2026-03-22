@@ -2,7 +2,8 @@
 node_modules/
 
 # Data directory (contains generated files)
-data/
+data/*
+!data/.gitkeep
 
 # Environment variables
 .env

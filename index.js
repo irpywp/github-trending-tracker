@@ -6,8 +6,14 @@ const dataDir = path.join(__dirname, 'data');
 const todayFile = path.join(dataDir, `trending_${new Date().toISOString().split('T')[0]}.json`);
 const yesterdayFile = path.join(dataDir, `trending_${new Date(Date.now() - 86400000).toISOString().split('T')[0]}.json`);
 
+// 确保数据目录存在
 if (!fs.existsSync(dataDir)) {
   fs.mkdirSync(dataDir, { recursive: true });
+  // 创建 .gitkeep 文件（如果不存在）
+  const gitkeepFile = path.join(dataDir, '.gitkeep');
+  if (!fs.existsSync(gitkeepFile)) {
+    fs.writeFileSync(gitkeepFile, '');
+  }
 }
 
 async function scrapeTrending() {

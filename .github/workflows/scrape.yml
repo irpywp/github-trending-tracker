@@ -1,0 +1,29 @@
+name: Scrape OSS Insight Trending
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天凌晨运行
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run scraper
+        run: npm start
+        
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: trending-data
+          path: data/
