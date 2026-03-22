@@ -72,19 +72,6 @@ function compareWithYesterday(todayProjects) {
     console.log('\n没有新增项目');
   }
   
-  if (removedProjects.length > 0) {
-    console.log(`\n❌ 移除项目 (${removedProjects.length}个):`);
-    removedProjects.forEach((project, index) => {
-      console.log(`${index + 1}. ${project.repo_name}`);
-      console.log(`   描述: ${project.description}`);
-      console.log(`   语言: ${project.language}`);
-      console.log(`   星标: ${project.stars} | Fork: ${project.forks}`);
-      console.log('');
-    });
-  } else {
-    console.log('\n没有移除项目');
-  }
-  
   return { new: newProjects, removed: removedProjects };
 }
 
@@ -131,31 +118,6 @@ async function main() {
       mdContent += `### 🆕 新增项目
 
 没有新增项目
-
-`;
-    }
-    
-    if (result.removed.length > 0) {
-      mdContent += `### ❌ 移除项目 (${result.removed.length}个)
-
-`;
-      result.removed.forEach((project, index) => {
-        mdContent += `${index + 1}. **${project.repo_name}**
-`;
-        mdContent += `   - 描述: ${project.description}
-`;
-        mdContent += `   - 语言: ${project.language}
-`;
-        mdContent += `   - 星标: ${project.stars} | Fork: ${project.forks}
-`;
-        mdContent += `   - 总分: ${project.total_score}
-
-`;
-      });
-    } else {
-      mdContent += `### ❌ 移除项目
-
-没有移除项目
 
 `;
     }
