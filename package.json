@@ -1,0 +1,19 @@
+{
+  "name": "ossinsight-trending-scraper",
+  "version": "1.0.0",
+  "description": "抓取OSS Insight 24小时榜单并与前一天对比",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "keywords": ["ossinsight", "scraper", "trending"],
+  "author": "",
+  "license": "MIT"
+}
