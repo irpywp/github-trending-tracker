@@ -129,7 +129,10 @@ async function main() {
     // 提交生成的文件到版本控制
     try {
       const { execSync } = require('child_process');
-      execSync(`git add ${diffFile} ${mdFile} ${todayFile}`, { stdio: 'inherit' });
+      const diffFileRelative = diffFile.replace(__dirname + '\\', '');
+      const mdFileRelative = mdFile.replace(__dirname + '\\', '');
+      const todayFileRelative = todayFile.replace(__dirname + '\\', '');
+      execSync(`git add ${diffFileRelative} ${mdFileRelative} ${todayFileRelative}`, { stdio: 'inherit' });
       execSync('git commit -m "更新差异报告和榜单数据"', { stdio: 'inherit' });
       execSync('git push origin master', { stdio: 'inherit' });
       console.log('\n生成的文件已提交到版本控制');
