@@ -125,6 +125,17 @@ async function main() {
     fs.writeFileSync(mdFile, mdContent);
     console.log(`\n差异结果已保存到 ${diffFile}`);
     console.log(`差异报告已保存到 ${mdFile}`);
+    
+    // 提交生成的文件到版本控制
+    try {
+      const { execSync } = require('child_process');
+      execSync('git add data/diff_*.md data/trending_*.json', { stdio: 'inherit' });
+      execSync('git commit -m "更新差异报告和榜单数据"', { stdio: 'inherit' });
+      execSync('git push origin master', { stdio: 'inherit' });
+      console.log('\n生成的文件已提交到版本控制');
+    } catch (error) {
+      console.error('提交文件失败:', error.message);
+    }
   } else {
     console.log('没有抓取到项目数据');
   }

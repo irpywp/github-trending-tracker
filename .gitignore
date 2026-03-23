@@ -4,6 +4,8 @@ node_modules/
 # Data directory (contains generated files)
 data/*
 !data/.gitkeep
+!data/diff_*.md  # 不忽略差异报告文件
+!data/trending_*.json  # 不忽略榜单数据文件
 
 # Environment variables
 .env
