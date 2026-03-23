@@ -129,7 +129,7 @@ async function main() {
     // 提交生成的文件到版本控制
     try {
       const { execSync } = require('child_process');
-      execSync('git add data/diff_*.md data/trending_*.json', { stdio: 'inherit' });
+      execSync(`git add ${diffFile} ${mdFile} ${todayFile}`, { stdio: 'inherit' });
       execSync('git commit -m "更新差异报告和榜单数据"', { stdio: 'inherit' });
       execSync('git push origin master', { stdio: 'inherit' });
       console.log('\n生成的文件已提交到版本控制');
